@@ -8,6 +8,13 @@ The D&D GM Toolkit is designed to streamline the game master experience by provi
 
 ## ✨ Key Features
 
+### ⚙️ Fully Configurable Character Sheets
+- **Customize Everything**: Configure trait categories, field names, and UI layout
+- **Add Custom Sections**: Create sections for homebrew systems or house rules
+- **Flexible Fields**: Text, numbers, textareas, checkboxes, and dropdowns
+- **Import/Export Configs**: Share configurations or back them up
+- **See [CONFIGURATION.md](./CONFIGURATION.md) for detailed guide**
+
 ### 📋 Character Management
 - **Complete Character Sheets**: Store all standard D&D 5e character data including:
   - Basic info (name, race, class, level, background)
