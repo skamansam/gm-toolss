@@ -65,24 +65,34 @@ The D&D GM Toolkit is designed to streamline the game master experience by provi
 
 ## 🚀 Getting Started
 
+### Live Demo
+
+The app is automatically deployed to GitHub Pages:
+**[https://skamansam.github.io/gm-toolss/](https://skamansam.github.io/gm-toolss/)**
+
 ### Prerequisites
-- Node.js 18+ and pnpm (or npm/yarn)
-- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Node.js 20+ or 22+
+- pnpm (recommended) or npm
 
 ### Installation
 
-1. **Install dependencies**
-   ```bash
-   pnpm install
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/skamansam/gm-toolss.git
+cd gm-toolss
 
-2. **Start the development server**
-   ```bash
-   pnpm run dev
-   ```
+# Install dependencies
+pnpm install
 
-3. **Open your browser**
-   Navigate to `http://localhost:5173` (or the port shown in your terminal)
+# Start the development server
+pnpm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+### Deployment
+
+The app automatically deploys to GitHub Pages on every push to `main`. See [DEPLOYMENT.md](./DEPLOYMENT.md) for details.
 
 ### Building for Production
 
