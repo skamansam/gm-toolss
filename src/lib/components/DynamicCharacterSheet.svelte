@@ -199,6 +199,61 @@
 											class="w-16 mx-auto px-2 py-1 bg-gray-800 border border-gray-600 rounded text-center text-sm"
 										/>
 									</div>
+								{:else if field.type === 'save'}
+									{@const abilityScore = getFieldValue(field.id.replace('save-', '')) || 10}
+									{@const modifier = Math.floor((abilityScore - 10) / 2)}
+									{@const profBonus = getFieldValue('proficiency') || 2}
+									{@const isProficient = getFieldValue(`${field.id}-prof`) || false}
+									{@const total = modifier + (isProficient ? profBonus : 0)}
+									<div class="flex items-center gap-2">
+										<input
+											type="checkbox"
+											checked={isProficient}
+											onchange={(e) => setFieldValue(`${field.id}-prof`, e.currentTarget.checked)}
+											class="w-4 h-4"
+										/>
+										<div class="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded text-center">
+											{total >= 0 ? '+' : ''}{total}
+										</div>
+									</div>
+								{:else if field.type === 'skill'}
+									{@const skillToAbility = {
+										'skill-acrobatics': 'dex',
+										'skill-animal-handling': 'wis',
+										'skill-arcana': 'int',
+										'skill-athletics': 'str',
+										'skill-deception': 'cha',
+										'skill-history': 'int',
+										'skill-insight': 'wis',
+										'skill-intimidation': 'cha',
+										'skill-investigation': 'int',
+										'skill-medicine': 'wis',
+										'skill-nature': 'int',
+										'skill-perception': 'wis',
+										'skill-performance': 'cha',
+										'skill-persuasion': 'cha',
+										'skill-religion': 'int',
+										'skill-sleight-of-hand': 'dex',
+										'skill-stealth': 'dex',
+										'skill-survival': 'wis'
+									}}
+									{@const abilityKey = skillToAbility[field.id] || 'int'}
+									{@const abilityScore = getFieldValue(abilityKey) || 10}
+									{@const modifier = Math.floor((abilityScore - 10) / 2)}
+									{@const profBonus = getFieldValue('proficiency') || 2}
+									{@const isProficient = getFieldValue(`${field.id}-prof`) || false}
+									{@const total = modifier + (isProficient ? profBonus : 0)}
+									<div class="flex items-center gap-2">
+										<input
+											type="checkbox"
+											checked={isProficient}
+											onchange={(e) => setFieldValue(`${field.id}-prof`, e.currentTarget.checked)}
+											class="w-4 h-4"
+										/>
+										<div class="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded text-center">
+											{total >= 0 ? '+' : ''}{total}
+										</div>
+									</div>
 								{:else}
 									<div class="text-gray-500 text-sm">Unsupported field type: {field.type}</div>
 								{/if}
