@@ -264,6 +264,10 @@
 								<option value="textarea">Textarea</option>
 								<option value="checkbox">Checkbox</option>
 								<option value="select">Select</option>
+								<option value="list">List</option>
+								<option value="ability">Ability Score</option>
+								<option value="skill">Skill</option>
+								<option value="save">Saving Throw</option>
 							</select>
 							<button
 								onclick={() => addFieldToSection(section.id)}

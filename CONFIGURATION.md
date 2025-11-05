@@ -72,10 +72,37 @@ type FieldType =
   | 'textarea'  // Multi-line text area
   | 'checkbox'  // Boolean checkbox
   | 'select'    // Dropdown with options
+  | 'list'      // Dynamic list of items with properties
   | 'ability'   // Special: Ability score with modifier
   | 'skill'     // Special: Skill with proficiency
   | 'save'      // Special: Saving throw
 ```
+
+### List Fields
+
+The **list** field type allows you to create dynamic collections of items with multiple properties:
+
+**Equipment Example:**
+```json
+{
+  "id": "equipment-list",
+  "label": "Equipment & Inventory", 
+  "type": "list",
+  "addButtonText": "Add Item",
+  "listProperties": [
+    { "id": "name", "label": "Item Name", "type": "text", "width": "half" },
+    { "id": "quantity", "label": "Qty", "type": "number", "width": "quarter" },
+    { "id": "weight", "label": "Weight", "type": "number", "width": "quarter" },
+    { "id": "description", "label": "Description", "type": "textarea", "width": "full" }
+  ]
+}
+```
+
+**Features:**
+- **Add/Remove Items**: Users can dynamically add and remove list items
+- **Multiple Properties**: Each item can have multiple fields (text, number, textarea, checkbox, select)
+- **Flexible Layout**: Control field widths and arrangement
+- **Custom Labels**: Set custom button text and field labels
 
 ### Section Structure
 

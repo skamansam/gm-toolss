@@ -1,15 +1,27 @@
 // Configurable character sheet structure
 
+export interface ListItemProperty {
+	id: string;
+	label: string;
+	type: 'text' | 'number' | 'textarea' | 'checkbox' | 'select';
+	placeholder?: string;
+	options?: string[];
+	width?: 'full' | 'half' | 'third' | 'quarter';
+}
+
 export interface FieldConfig {
 	id: string;
 	label: string;
-	type: 'text' | 'number' | 'textarea' | 'select' | 'checkbox' | 'ability' | 'skill' | 'save';
+	type: 'text' | 'number' | 'textarea' | 'select' | 'checkbox' | 'ability' | 'skill' | 'save' | 'list';
 	placeholder?: string;
 	options?: string[];
-	defaultValue?: any;
+	defaultValue?: string | number | boolean;
 	width?: 'full' | 'half' | 'third' | 'quarter';
 	rollable?: boolean;
 	calculated?: boolean;
+	// For list type fields
+	listProperties?: ListItemProperty[];
+	addButtonText?: string;
 }
 
 export interface SectionConfig {
@@ -128,7 +140,35 @@ export const defaultCharacterConfig: LayoutConfig = {
 			collapsible: true,
 			defaultCollapsed: true,
 			fields: [
-				{ id: 'equipment', label: 'Equipment & Inventory', type: 'textarea', width: 'full', defaultValue: '' },
+				{ 
+					id: 'equipment-list', 
+					label: 'Equipment & Inventory', 
+					type: 'list', 
+					width: 'full',
+					addButtonText: 'Add Item',
+					listProperties: [
+						{ id: 'name', label: 'Item Name', type: 'text', width: 'half', placeholder: 'Item name' },
+						{ id: 'quantity', label: 'Qty', type: 'number', width: 'quarter' },
+						{ id: 'weight', label: 'Weight', type: 'number', width: 'quarter', placeholder: 'lbs' },
+						{ id: 'cost', label: 'Cost', type: 'text', width: 'quarter', placeholder: 'gp' },
+						{ id: 'description', label: 'Description', type: 'textarea', width: 'full', placeholder: 'Item description...' }
+					]
+				},
+				{ 
+					id: 'weapons-list', 
+					label: 'Weapons', 
+					type: 'list', 
+					width: 'full',
+					addButtonText: 'Add Weapon',
+					listProperties: [
+						{ id: 'name', label: 'Weapon Name', type: 'text', width: 'third', placeholder: 'Weapon name' },
+						{ id: 'damage', label: 'Damage', type: 'text', width: 'quarter', placeholder: '1d8+3' },
+						{ id: 'type', label: 'Damage Type', type: 'select', width: 'quarter', 
+							options: ['Slashing', 'Piercing', 'Bludgeoning', 'Fire', 'Cold', 'Lightning', 'Thunder', 'Poison', 'Acid', 'Psychic', 'Necrotic', 'Radiant', 'Force'] },
+						{ id: 'proficient', label: 'Proficient', type: 'checkbox', width: 'quarter' },
+						{ id: 'properties', label: 'Properties', type: 'text', width: 'full', placeholder: 'Finesse, Light, Thrown (range 20/60)' }
+					]
+				}
 			]
 		},
 		{
@@ -138,7 +178,26 @@ export const defaultCharacterConfig: LayoutConfig = {
 			collapsible: true,
 			defaultCollapsed: true,
 			fields: [
-				{ id: 'spells', label: 'Spells', type: 'textarea', width: 'full', defaultValue: '' },
+				{ 
+					id: 'spells-list', 
+					label: 'Spells', 
+					type: 'list', 
+					width: 'full',
+					addButtonText: 'Add Spell',
+					listProperties: [
+						{ id: 'name', label: 'Spell Name', type: 'text', width: 'third', placeholder: 'Spell name' },
+						{ id: 'level', label: 'Level', type: 'select', width: 'quarter', 
+							options: ['Cantrip', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th'] },
+						{ id: 'school', label: 'School', type: 'select', width: 'quarter',
+							options: ['Abjuration', 'Conjuration', 'Divination', 'Enchantment', 'Evocation', 'Illusion', 'Necromancy', 'Transmutation'] },
+						{ id: 'prepared', label: 'Prepared', type: 'checkbox', width: 'quarter' },
+						{ id: 'casting-time', label: 'Casting Time', type: 'text', width: 'quarter', placeholder: '1 action' },
+						{ id: 'range', label: 'Range', type: 'text', width: 'quarter', placeholder: '60 feet' },
+						{ id: 'components', label: 'Components', type: 'text', width: 'quarter', placeholder: 'V, S, M' },
+						{ id: 'duration', label: 'Duration', type: 'text', width: 'quarter', placeholder: 'Instantaneous' },
+						{ id: 'description', label: 'Description', type: 'textarea', width: 'full', placeholder: 'Spell description...' }
+					]
+				}
 			]
 		},
 		{
